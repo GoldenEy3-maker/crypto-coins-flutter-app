@@ -1,0 +1,42 @@
+{
+    "@@locale": "en",
+    "appTitle": "Crypto App",
+    "@appTitle": {
+        "description": "Title of the app"
+    },
+    "homeTitleWithValue": "Home: {value}",
+    "@homeTitleWithValue": {
+        "description": "Title of the home page with a value",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "description": "Value",
+                "example": "Cryptocurrencies"
+            }
+        }
+    },
+    "bottomNavigationBarHome": "Home",
+    "@bottomNavigationBarHome": {
+        "description": "Title of the home bottom navigation bar item"
+    },
+    "bottomNavigationBarCoins": "Coins",
+    "@bottomNavigationBarCoins": {
+        "description": "Title of the coins bottom navigation bar item"
+    },
+    "bottomNavigationBarSettings": "Settings",
+    "@bottomNavigationBarSettings": {
+        "description": "Title of the settings bottom navigation bar item"
+    },
+    "lightTheme": "Light",
+    "@lightTheme": {
+        "description": "Light theme"
+    },
+    "darkTheme": "Dark",
+    "@darkTheme": {
+        "description": "Dark theme"
+    },
+    "systemTheme": "System",
+    "@systemTheme": {
+        "description": "System theme"
+    }
+}
