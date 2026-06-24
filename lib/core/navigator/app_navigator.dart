@@ -7,6 +7,8 @@ abstract class AppNavigator {
 
   void openBlockTimerExample();
 
+  void openPostsList();
+
   void openCoinDetail(String coinName);
 
   void back();

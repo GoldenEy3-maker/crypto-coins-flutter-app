@@ -163,6 +163,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Bloc examples'**
   String get blocExamples;
+
+  /// Title of the bloc example infinite scroll posts
+  ///
+  /// In en, this message translates to:
+  /// **'Bloc example infinite scroll posts title'**
+  String get blocExampleInfiniteScrollPostsTitle;
+
+  /// Description of the bloc example infinite scroll posts
+  ///
+  /// In en, this message translates to:
+  /// **'Description of the bloc example infinite scroll posts'**
+  String get blocExampleInfiniteScrollPostsDescription;
 }
 
 class _AppLocalizationsDelegate

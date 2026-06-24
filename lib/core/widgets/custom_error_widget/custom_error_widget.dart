@@ -31,8 +31,8 @@ class CustomErrorWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: onRetry,
             style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(Colors.amber),
-              foregroundColor: WidgetStateProperty.all(Colors.black),
+              backgroundColor: .all(Colors.amber),
+              foregroundColor: .all(Colors.black),
             ),
             child: const Text("Retry"),
           ),

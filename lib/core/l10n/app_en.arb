@@ -50,5 +50,13 @@
   "blocExamples": "Bloc examples",
   "@blocExamples": {
     "description": "Title of the bloc examples section"
+  },
+  "blocExampleInfiniteScrollPostsTitle": "Bloc example infinite scroll posts title",
+  "@blocExampleInfiniteScrollPostsTitle": {
+    "description": "Title of the bloc example infinite scroll posts"
+  },
+  "blocExampleInfiniteScrollPostsDescription": "Description of the bloc example infinite scroll posts",
+  "@blocExampleInfiniteScrollPostsDescription": {
+    "description": "Description of the bloc example infinite scroll posts"
   }
 }

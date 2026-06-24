@@ -2,6 +2,20 @@ import "package:flutter/material.dart";
 import "package:flutter_application_1/core/l10n/app_localizations.dart";
 import "package:flutter_application_1/core/navigator/app_navigator.dart";
 
+class BlocExampleItem {
+  final String title;
+  final String description;
+  final VoidCallback onTap;
+  final IconData icon;
+
+  BlocExampleItem({
+    required this.title,
+    required this.description,
+    required this.onTap,
+    required this.icon,
+  });
+}
+
 class HomeView extends StatelessWidget {
   final AppNavigator navigator;
 
@@ -10,6 +24,21 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i10n = AppLocalizations.of(context)!;
+    final items = <BlocExampleItem>[
+      BlocExampleItem(
+        title: i10n.blocExampleTimerTitle,
+        description: i10n.blocExampleTimerDescription,
+        onTap: () => navigator.openBlockTimerExample(),
+        icon: Icons.timer,
+      ),
+      BlocExampleItem(
+        title: i10n.blocExampleInfiniteScrollPostsTitle,
+        description: i10n.blocExampleInfiniteScrollPostsDescription,
+        onTap: () => navigator.openPostsList(),
+        icon: Icons.list,
+      ),
+    ];
+
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -22,14 +51,15 @@ class HomeView extends StatelessWidget {
           ),
         ),
         SliverList.builder(
-          itemCount: 1,
+          itemCount: items.length,
           itemBuilder: (context, index) {
+            final item = items[index];
             return ListTile(
-              title: Text(i10n.blocExampleTimerTitle),
-              subtitle: Text(i10n.blocExampleTimerDescription),
+              title: Text(item.title),
+              subtitle: Text(item.description),
               trailing: const Icon(Icons.arrow_forward_ios),
-              leading: const Icon(Icons.timer),
-              onTap: () => navigator.openBlockTimerExample(),
+              leading: Icon(item.icon),
+              onTap: item.onTap,
             );
           },
         ),

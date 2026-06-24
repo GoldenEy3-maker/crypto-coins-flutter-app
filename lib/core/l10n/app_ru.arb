@@ -48,5 +48,13 @@
   "blocExamples": "Примеры Bloc",
   "@blocExamples": {
     "description": "Заголовок раздела примеры Bloc"
+  },
+  "blocExampleInfiniteScrollPostsTitle": "Bloc пример бесконечной прокрутки постов",
+  "@blocExampleInfiniteScrollPostsTitle": {
+    "description": "Заголовок блока Bloc пример бесконечной прокрутки постов"
+  },
+  "blocExampleInfiniteScrollPostsDescription": "Описание блока Bloc пример бесконечной прокрутки постов",
+  "@blocExampleInfiniteScrollPostsDescription": {
+    "description": "Описание блока Bloc пример бесконечной прокрутки постов"
   }
 }

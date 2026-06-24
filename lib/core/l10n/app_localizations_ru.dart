@@ -42,4 +42,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get blocExamples => 'Примеры Bloc';
+
+  @override
+  String get blocExampleInfiniteScrollPostsTitle =>
+      'Bloc пример бесконечной прокрутки постов';
+
+  @override
+  String get blocExampleInfiniteScrollPostsDescription =>
+      'Описание блока Bloc пример бесконечной прокрутки постов';
 }

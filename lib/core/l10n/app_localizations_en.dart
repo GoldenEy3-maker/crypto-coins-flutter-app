@@ -42,4 +42,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get blocExamples => 'Bloc examples';
+
+  @override
+  String get blocExampleInfiniteScrollPostsTitle =>
+      'Bloc example infinite scroll posts title';
+
+  @override
+  String get blocExampleInfiniteScrollPostsDescription =>
+      'Description of the bloc example infinite scroll posts';
 }

@@ -33,6 +33,11 @@ class AppNavigatorImpl implements AppNavigator {
   }
 
   @override
+  void openPostsList() {
+    _router.navigate(const PostsRoute());
+  }
+
+  @override
   void back() {
     _router.maybePop();
   }

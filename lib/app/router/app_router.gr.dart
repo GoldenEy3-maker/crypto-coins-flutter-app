@@ -138,6 +138,22 @@ class MainLayoutRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PostsPage]
+class PostsRoute extends PageRouteInfo<void> {
+  const PostsRoute({List<PageRouteInfo>? children})
+    : super(PostsRoute.name, initialChildren: children);
+
+  static const String name = 'PostsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PostsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SettingsPage]
 class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute({List<PageRouteInfo>? children})
