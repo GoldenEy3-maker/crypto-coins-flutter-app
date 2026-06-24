@@ -6,6 +6,7 @@ import "package:flutter_application_1/app/pages/crypto_detail_page.dart";
 import "package:flutter_application_1/app/pages/crypto_list_page.dart";
 import "package:flutter_application_1/app/pages/settings_page.dart";
 import "package:flutter_application_1/app/pages/home_page.dart";
+import "package:flutter_application_1/app/pages/timer_page.dart";
 import "package:flutter_application_1/app/layouts/main_layout.dart";
 
 part "app_router.gr.dart";
@@ -26,6 +27,7 @@ class AppRouter extends RootStackRouter {
           page: CoinsShellRoute.page,
           children: [AutoRoute(page: CryptoListRoute.page, initial: true)],
         ),
+        AutoRoute(page: TimerRoute.page),
         AutoRoute(page: SettingsRoute.page),
       ],
     ),

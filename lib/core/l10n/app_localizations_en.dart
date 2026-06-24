@@ -26,6 +26,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bottomNavigationBarSettings => 'Settings';
 
   @override
+  String get bottomNavigationBarTimer => 'Timer';
+
+  @override
   String get lightTheme => 'Light';
 
   @override

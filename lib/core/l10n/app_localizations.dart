@@ -128,6 +128,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get bottomNavigationBarSettings;
 
+  /// Title of the timer bottom navigation bar item
+  ///
+  /// In en, this message translates to:
+  /// **'Timer'**
+  String get bottomNavigationBarTimer;
+
   /// Light theme
   ///
   /// In en, this message translates to:

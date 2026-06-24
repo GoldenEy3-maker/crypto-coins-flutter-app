@@ -136,3 +136,19 @@ class SettingsRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [TimerPage]
+class TimerRoute extends PageRouteInfo<void> {
+  const TimerRoute({List<PageRouteInfo>? children})
+    : super(TimerRoute.name, initialChildren: children);
+
+  static const String name = 'TimerRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TimerPage();
+    },
+  );
+}

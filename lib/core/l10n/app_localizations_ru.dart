@@ -26,6 +26,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bottomNavigationBarSettings => 'Настройки';
 
   @override
+  String get bottomNavigationBarTimer => 'Таймер';
+
+  @override
   String get lightTheme => 'Светлая';
 
   @override

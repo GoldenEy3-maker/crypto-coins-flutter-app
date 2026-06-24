@@ -35,6 +35,12 @@ class MainLayoutAppBarResolver {
 
     if (activeTabIndexRouter == 2) {
       return MainLayoutAppBarConfig(
+        title: AppLocalizations.of(context)!.bottomNavigationBarTimer,
+      );
+    }
+
+    if (activeTabIndexRouter == 3) {
+      return MainLayoutAppBarConfig(
         title: AppLocalizations.of(context)!.bottomNavigationBarSettings,
       );
     }

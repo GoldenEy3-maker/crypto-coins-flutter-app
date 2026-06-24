@@ -1,40 +1,44 @@
 {
-    "@@locale": "ru",
-    "appTitle": "Вайбик крипты",
-    "@appTitle": {
-        "description": "Title of the app"
-    },
-    "homeTitleWithValue": "Главная: {value}",
-    "@homeTitleWithValue": {
-        "description": "Заголовок домашней вкладки с значением",
-        "placeholders": {
-            "value": {
-                "type": "String"
-            }
-        }
-    },
-    "bottomNavigationBarHome": "Главная",
-    "@bottomNavigationBarHome": {
-        "description": "Заголовок домашней вкладки"
-    },
-    "bottomNavigationBarCoins": "Монеты",
-    "@bottomNavigationBarCoins": {
-        "description": "Заголовок вкладки монет"
-    },
-    "bottomNavigationBarSettings": "Настройки",
-    "@bottomNavigationBarSettings": {
-        "description": "Заголовок вкладки настроек"
-    },
-    "lightTheme": "Светлая",
-    "@lightTheme": {
-        "description": "Тема светлая"
-    },
-    "darkTheme": "Тёмная",
-    "@darkTheme": {
-        "description": "Тема тёмная"
-    },
-    "systemTheme": "Системная",
-    "@systemTheme": {
-        "description": "Тема системная"
+  "@@locale": "ru",
+  "appTitle": "Вайбик крипты",
+  "@appTitle": {
+    "description": "Title of the app"
+  },
+  "homeTitleWithValue": "Главная: {value}",
+  "@homeTitleWithValue": {
+    "description": "Заголовок домашней вкладки с значением",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
     }
+  },
+  "bottomNavigationBarHome": "Главная",
+  "@bottomNavigationBarHome": {
+    "description": "Заголовок домашней вкладки"
+  },
+  "bottomNavigationBarCoins": "Монеты",
+  "@bottomNavigationBarCoins": {
+    "description": "Заголовок вкладки монет"
+  },
+  "bottomNavigationBarSettings": "Настройки",
+  "@bottomNavigationBarSettings": {
+    "description": "Заголовок вкладки настроек"
+  },
+  "bottomNavigationBarTimer": "Таймер",
+  "@bottomNavigationBarTimer": {
+    "description": "Заголовок вкладки таймера"
+  },
+  "lightTheme": "Светлая",
+  "@lightTheme": {
+    "description": "Тема светлая"
+  },
+  "darkTheme": "Тёмная",
+  "@darkTheme": {
+    "description": "Тема тёмная"
+  },
+  "systemTheme": "Системная",
+  "@systemTheme": {
+    "description": "Тема системная"
+  }
 }

@@ -17,7 +17,12 @@ class MainLayoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: const [HomeRoute(), CoinsShellRoute(), SettingsRoute()],
+      routes: const [
+        HomeRoute(),
+        CoinsShellRoute(),
+        TimerRoute(),
+        SettingsRoute(),
+      ],
       transitionBuilder: (context, child, animation) =>
           FadeTransition(opacity: animation, child: child),
       builder: (context, child) {
@@ -45,6 +50,16 @@ class MainLayoutPage extends StatelessWidget {
           ),
           body: child,
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Theme.of(
+              context,
+            ).bottomNavigationBarTheme.backgroundColor,
+            selectedItemColor: Theme.of(
+              context,
+            ).bottomNavigationBarTheme.selectedItemColor,
+            unselectedItemColor: Theme.of(
+              context,
+            ).bottomNavigationBarTheme.unselectedItemColor,
             currentIndex: tabsRouter.activeIndex,
             onTap: (index) {
               if (_isCoinsShellRoute(index) &&
@@ -63,6 +78,10 @@ class MainLayoutPage extends StatelessWidget {
               BottomNavigationBarItem(
                 label: AppLocalizations.of(context)!.bottomNavigationBarCoins,
                 icon: const Icon(Icons.currency_bitcoin),
+              ),
+              BottomNavigationBarItem(
+                label: AppLocalizations.of(context)!.bottomNavigationBarTimer,
+                icon: const Icon(Icons.timer),
               ),
               BottomNavigationBarItem(
                 label: AppLocalizations.of(
