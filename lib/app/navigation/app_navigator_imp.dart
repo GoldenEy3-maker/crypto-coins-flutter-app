@@ -28,6 +28,11 @@ class AppNavigatorImpl implements AppNavigator {
   }
 
   @override
+  void openBlockTimerExample() {
+    _router.navigate(const TimerRoute());
+  }
+
+  @override
   void back() {
     _router.maybePop();
   }

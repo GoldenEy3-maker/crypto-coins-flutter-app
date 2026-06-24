@@ -106,6 +106,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomeShellPage]
+class HomeShellRoute extends PageRouteInfo<void> {
+  const HomeShellRoute({List<PageRouteInfo>? children})
+    : super(HomeShellRoute.name, initialChildren: children);
+
+  static const String name = 'HomeShellRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeShellPage();
+    },
+  );
+}
+
+/// generated route for
 /// [MainLayoutPage]
 class MainLayoutRoute extends PageRouteInfo<void> {
   const MainLayoutRoute({List<PageRouteInfo>? children})

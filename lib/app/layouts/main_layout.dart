@@ -17,12 +17,7 @@ class MainLayoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: const [
-        HomeRoute(),
-        CoinsShellRoute(),
-        TimerRoute(),
-        SettingsRoute(),
-      ],
+      routes: const [HomeRoute(), CoinsShellRoute(), SettingsRoute()],
       transitionBuilder: (context, child, animation) =>
           FadeTransition(opacity: animation, child: child),
       builder: (context, child) {
@@ -79,10 +74,7 @@ class MainLayoutPage extends StatelessWidget {
                 label: AppLocalizations.of(context)!.bottomNavigationBarCoins,
                 icon: const Icon(Icons.currency_bitcoin),
               ),
-              BottomNavigationBarItem(
-                label: AppLocalizations.of(context)!.bottomNavigationBarTimer,
-                icon: const Icon(Icons.timer),
-              ),
+
               BottomNavigationBarItem(
                 label: AppLocalizations.of(
                   context,
