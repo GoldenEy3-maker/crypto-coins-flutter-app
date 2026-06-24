@@ -26,9 +26,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bottomNavigationBarSettings => 'Settings';
 
   @override
-  String get bottomNavigationBarTimer => 'Timer';
-
-  @override
   String get lightTheme => 'Light';
 
   @override
@@ -36,4 +33,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get systemTheme => 'System';
+
+  @override
+  String get blocExampleTimerTitle => 'Bloc example timer title';
+
+  @override
+  String get blocExampleTimerDescription => 'Bloc example timer description';
+
+  @override
+  String get blocExamples => 'Bloc examples';
 }

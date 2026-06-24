@@ -26,9 +26,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bottomNavigationBarSettings => 'Настройки';
 
   @override
-  String get bottomNavigationBarTimer => 'Таймер';
-
-  @override
   String get lightTheme => 'Светлая';
 
   @override
@@ -36,4 +33,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get systemTheme => 'Системная';
+
+  @override
+  String get blocExampleTimerTitle => 'Bloc пример таймера';
+
+  @override
+  String get blocExampleTimerDescription => 'Описание Bloc пример таймера';
+
+  @override
+  String get blocExamples => 'Примеры Bloc';
 }

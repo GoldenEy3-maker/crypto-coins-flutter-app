@@ -27,10 +27,6 @@
   "@bottomNavigationBarSettings": {
     "description": "Title of the settings bottom navigation bar item"
   },
-  "bottomNavigationBarTimer": "Timer",
-  "@bottomNavigationBarTimer": {
-    "description": "Title of the timer bottom navigation bar item"
-  },
   "lightTheme": "Light",
   "@lightTheme": {
     "description": "Light theme"
@@ -42,5 +38,17 @@
   "systemTheme": "System",
   "@systemTheme": {
     "description": "System theme"
+  },
+  "blocExampleTimerTitle": "Bloc example timer title",
+  "@blocExampleTimerTitle": {
+    "description": "Title of the bloc example timer"
+  },
+  "blocExampleTimerDescription": "Bloc example timer description",
+  "@blocExampleTimerDescription": {
+    "description": "Description of the bloc example timer"
+  },
+  "blocExamples": "Bloc examples",
+  "@blocExamples": {
+    "description": "Title of the bloc examples section"
   }
 }

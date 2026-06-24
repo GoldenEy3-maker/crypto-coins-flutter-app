@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_application_1/core/l10n/app_localizations.dart";
 import "package:flutter_application_1/core/utils/ticker.dart";
 import "package:flutter_application_1/features/timer/presentation/blocs/timer_bloc.dart";
 import "package:flutter_application_1/features/timer/presentation/views/timer_view.dart";
@@ -11,9 +12,14 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TimerBloc(ticker: const Ticker()),
-      child: const TimerView(),
+    final i10n = AppLocalizations.of(context)!;
+
+    return Scaffold(
+      appBar: AppBar(title: Text(i10n.blocExampleTimerTitle)),
+      body: BlocProvider(
+        create: (context) => TimerBloc(ticker: const Ticker()),
+        child: const TimerView(),
+      ),
     );
   }
 }

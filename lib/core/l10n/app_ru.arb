@@ -25,10 +25,6 @@
   "@bottomNavigationBarSettings": {
     "description": "Заголовок вкладки настроек"
   },
-  "bottomNavigationBarTimer": "Таймер",
-  "@bottomNavigationBarTimer": {
-    "description": "Заголовок вкладки таймера"
-  },
   "lightTheme": "Светлая",
   "@lightTheme": {
     "description": "Тема светлая"
@@ -40,5 +36,17 @@
   "systemTheme": "Системная",
   "@systemTheme": {
     "description": "Тема системная"
+  },
+  "blocExampleTimerTitle": "Bloc пример таймера",
+  "@blocExampleTimerTitle": {
+    "description": "Заголовок блока Bloc пример таймера"
+  },
+  "blocExampleTimerDescription": "Описание Bloc пример таймера",
+  "@blocExampleTimerDescription": {
+    "description": "Описание блока Bloc пример таймера"
+  },
+  "blocExamples": "Примеры Bloc",
+  "@blocExamples": {
+    "description": "Заголовок раздела примеры Bloc"
   }
 }

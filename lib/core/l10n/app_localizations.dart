@@ -128,12 +128,6 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get bottomNavigationBarSettings;
 
-  /// Title of the timer bottom navigation bar item
-  ///
-  /// In en, this message translates to:
-  /// **'Timer'**
-  String get bottomNavigationBarTimer;
-
   /// Light theme
   ///
   /// In en, this message translates to:
@@ -151,6 +145,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'System'**
   String get systemTheme;
+
+  /// Title of the bloc example timer
+  ///
+  /// In en, this message translates to:
+  /// **'Bloc example timer title'**
+  String get blocExampleTimerTitle;
+
+  /// Description of the bloc example timer
+  ///
+  /// In en, this message translates to:
+  /// **'Bloc example timer description'**
+  String get blocExampleTimerDescription;
+
+  /// Title of the bloc examples section
+  ///
+  /// In en, this message translates to:
+  /// **'Bloc examples'**
+  String get blocExamples;
 }
 
 class _AppLocalizationsDelegate
