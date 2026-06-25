@@ -1,12 +1,22 @@
 import "package:bloc/bloc.dart";
+import "package:bloc_concurrency/bloc_concurrency.dart";
 import "package:equatable/equatable.dart";
 import "package:flutter_application_1/core/error/failures.dart";
 
 import "../../domain/entities/entities.dart";
 import "../../domain/usecases/usecases.dart";
+import 'package:stream_transform/stream_transform.dart';
 
 part "posts_event.dart";
 part "posts_state.dart";
+
+const throttleDuration = Duration(milliseconds: 100);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
+}
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
   final GetPosts _getPosts;
@@ -14,10 +24,16 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   PostsBloc({required GetPosts getPosts})
     : _getPosts = getPosts,
       super(const PostsState()) {
-    on<PostsFetched>(_onFetched);
+    on<PostsFetchRequested>(
+      _onFetchRequested,
+      transformer: throttleDroppable(throttleDuration),
+    );
   }
 
-  Future<void> _onFetched(PostsFetched event, Emitter<PostsState> emit) async {
+  Future<void> _onFetchRequested(
+    PostsFetchRequested event,
+    Emitter<PostsState> emit,
+  ) async {
     if (state.hasReachedMax) return;
 
     final result = await _getPosts(

@@ -1,6 +1,8 @@
 import "package:dio/dio.dart";
+import "package:flutter_application_1/core/config/env.dart";
 import "package:flutter_application_1/core/error/failures.dart";
 import "package:flutter_application_1/core/network/api_client.dart";
+import "package:flutter_application_1/core/network/dio_failure_mapper.dart";
 import "package:flutter_application_1/core/utils/either.dart";
 
 import "../../domain/usecases/usecases.dart";
@@ -22,13 +24,15 @@ class PostsRemoteDataSourceImpl implements PostsRemoteDataSource {
   ) async {
     try {
       final response = await _apiClient.client.get(
-        "https://jsonplaceholder.typicode.com/posts",
+        "${Env.jsonPlaceholderBaseUrl}/posts",
         queryParameters: {"_limit": params.limit, "_start": params.start},
       );
       final data = response.data as List<dynamic>;
       return Right(data.map((e) => PostModel.fromJson(e)).toList());
     } on DioException catch (e) {
-      return Left(NetworkFailure(e.message ?? "No internet connection"));
+      return Left(mapDioException(e));
+    } catch (e) {
+      return Left(ServerFailure("Invalid posts response: $e"));
     }
   }
 }

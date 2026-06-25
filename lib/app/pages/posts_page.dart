@@ -20,7 +20,8 @@ class PostsPage extends StatelessWidget {
       appBar: AppBar(title: Text(i10n.blocExampleInfiniteScrollPostsTitle)),
       body: BlocProvider(
         create: (context) =>
-            PostsBloc(getPosts: getIt.get<GetPosts>())..add(PostsFetched()),
+            PostsBloc(getPosts: getIt.get<GetPosts>())
+              ..add(PostsFetchRequested()),
         child: const PostsListView(),
       ),
     );

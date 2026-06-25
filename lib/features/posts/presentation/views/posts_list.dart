@@ -23,7 +23,9 @@ class _PostsListViewState extends State<PostsListView> {
   }
 
   void _onScroll() {
-    if (_isBottom) context.read<PostsBloc>().add(PostsFetched());
+    if (_isBottom) {
+      context.read<PostsBloc>().add(PostsFetchRequested());
+    }
   }
 
   @override
@@ -49,7 +51,7 @@ class _PostsListViewState extends State<PostsListView> {
             return CustomErrorWidget(
               error: state.error.toString(),
               onRetry: () {
-                context.read<PostsBloc>().add(PostsFetched());
+                context.read<PostsBloc>().add(PostsFetchRequested());
               },
             );
           case .success:
@@ -63,11 +65,16 @@ class _PostsListViewState extends State<PostsListView> {
                   itemBuilder: (context, index) {
                     final post = state.posts[index];
 
-                    return index >= state.posts.length
-                        ? const BottomLoader()
-                        : PostTile(post: post);
+                    return PostTile(post: post);
                   },
                 ),
+                if (!state.hasReachedMax)
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: .symmetric(vertical: 16),
+                      child: BottomLoader(),
+                    ),
+                  ),
               ],
             );
         }
