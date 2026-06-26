@@ -2,8 +2,8 @@ import "dart:async";
 
 import "package:flutter_application_1/core/session/session.dart";
 
-class SessionRepositoryImpl implements SessionRepository {
-  SessionRepositoryImpl({AuthSession? initialSession})
+class AuthSessionRepository implements SessionRepository {
+  AuthSessionRepository({AuthSession? initialSession})
     : _currentSession = initialSession ?? AuthSessionUnknown(),
       _controller = StreamController<AuthSession>.broadcast();
 

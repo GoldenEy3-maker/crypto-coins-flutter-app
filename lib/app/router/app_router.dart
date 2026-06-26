@@ -1,5 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_application_1/app/router/guards/auth_guard.dart";
+import "package:flutter_application_1/app/router/guards/guest_guard.dart";
 import "package:flutter_application_1/app/router/modal_sheet_builder.dart";
 import "package:flutter_application_1/app/pages/coins_shell_page.dart";
 import "package:flutter_application_1/app/pages/crypto_detail_page.dart";
@@ -10,6 +12,8 @@ import "package:flutter_application_1/app/pages/timer_page.dart";
 import "package:flutter_application_1/app/pages/home_shell_page.dart";
 import "package:flutter_application_1/app/pages/posts_page.dart";
 import "package:flutter_application_1/app/layouts/main_layout.dart";
+import "package:flutter_application_1/app/pages/login_page.dart";
+import "package:flutter_application_1/app/pages/splash_page.dart";
 
 part "app_router.gr.dart";
 
@@ -20,9 +24,12 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
+    AutoRoute(page: SplashRoute.page, initial: true),
+    AutoRoute(page: LoginRoute.page, guards: [GuestGuard()]),
     AutoRoute(
       page: MainLayoutRoute.page,
       path: "/",
+      guards: [AuthGuard()],
       children: [
         AutoRoute(
           page: HomeShellRoute.page,

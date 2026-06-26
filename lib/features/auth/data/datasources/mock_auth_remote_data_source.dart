@@ -22,17 +22,29 @@ class JwtAccessTokenPayload {
   final String email;
 
   JwtAccessTokenPayload({required this.email});
+
+  Map<String, dynamic> toJson() => {"email": email};
+
+  factory JwtAccessTokenPayload.fromJson(Map<String, dynamic> json) {
+    return JwtAccessTokenPayload(email: json["email"] as String);
+  }
 }
 
 class JwtRefreshTokenPayload {
   final String email;
 
   JwtRefreshTokenPayload({required this.email});
+
+  Map<String, dynamic> toJson() => {"email": email};
+
+  factory JwtRefreshTokenPayload.fromJson(Map<String, dynamic> json) {
+    return JwtRefreshTokenPayload(email: json["email"] as String);
+  }
 }
 
 class AuthJwtTokenGenerator {
   static JwtToken generateAccessToken(JwtAccessTokenPayload payload) {
-    final jwt = JWT(payload);
+    final jwt = JWT(payload.toJson());
     final token = jwt.sign(
       SecretKey(Env.accessTokenSecret),
       expiresIn: const Duration(minutes: 5),
@@ -44,7 +56,7 @@ class AuthJwtTokenGenerator {
   }
 
   static JwtToken generateRefreshToken(JwtRefreshTokenPayload payload) {
-    final jwt = JWT(payload);
+    final jwt = JWT(payload.toJson());
     final token = jwt.sign(
       SecretKey(Env.refreshTokenSecret),
       expiresIn: const Duration(days: 7),
@@ -61,7 +73,7 @@ class AuthJwtTokenGenerator {
     try {
       final jwt = JWT.verify(token, SecretKey(Env.accessTokenSecret));
       final payload = jwt.payload;
-      return Right(JwtAccessTokenPayload(email: payload["email"]));
+      return Right(JwtAccessTokenPayload.fromJson(payload));
     } catch (e) {
       return Left(JwtTokenException(e.toString()));
     }
@@ -73,7 +85,7 @@ class AuthJwtTokenGenerator {
     try {
       final jwt = JWT.verify(token, SecretKey(Env.refreshTokenSecret));
       final payload = jwt.payload;
-      return Right(JwtRefreshTokenPayload(email: payload["email"]));
+      return Right(JwtRefreshTokenPayload.fromJson(payload));
     } catch (e) {
       return Left(JwtTokenException(e.toString()));
     }

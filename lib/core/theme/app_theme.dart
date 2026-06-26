@@ -61,6 +61,29 @@ class AppTheme {
       bodyColor: darkTextColor,
       displayColor: darkTextColor,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: darkTextColor),
+      ),
+      activeIndicatorBorder: BorderSide(color: Colors.amber.shade900),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.amber.shade900),
+      ),
+      floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+        if (states.contains(WidgetState.error)) {
+          return const TextStyle(color: Colors.red);
+        }
+
+        if (states.contains(WidgetState.focused)) {
+          return TextStyle(color: Colors.amber.shade900);
+        }
+
+        return TextStyle(color: darkTextColor);
+      }),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.amber.shade900,
+    ),
   );
 
   ThemeData get lightTheme => ThemeData(
@@ -117,6 +140,19 @@ class AppTheme {
     textTheme: ThemeData.light().textTheme.apply(
       bodyColor: lightTextColor,
       displayColor: lightTextColor,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: lightTextColor),
+      ),
+      activeIndicatorBorder: BorderSide(color: lightTextColor),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.amber.shade900),
+      ),
+      floatingLabelStyle: TextStyle(color: Colors.amber.shade900),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.amber.shade900,
     ),
   );
 }

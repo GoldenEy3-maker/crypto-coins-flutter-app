@@ -7,17 +7,17 @@ import "package:flutter_application_1/core/utils/either.dart";
 import "../../domain/repositories/repositories.dart";
 import "../../domain/params/params.dart";
 import "../datasources/datasources.dart";
-import "session_repository_impl.dart";
+import "auth_session_repository_impl.dart";
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _localDataSource;
-  final SessionRepositoryImpl _sessionRepository;
+  final AuthSessionRepository _sessionRepository;
 
   const AuthRepositoryImpl({
     required AuthRemoteDataSource remoteDataSource,
     required AuthLocalDataSource localDataSource,
-    required SessionRepositoryImpl sessionRepository,
+    required AuthSessionRepository sessionRepository,
   }) : _remoteDataSource = remoteDataSource,
        _localDataSource = localDataSource,
        _sessionRepository = sessionRepository;

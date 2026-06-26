@@ -58,5 +58,25 @@
   "blocExampleInfiniteScrollPostsDescription": "Description of the bloc example infinite scroll posts",
   "@blocExampleInfiniteScrollPostsDescription": {
     "description": "Description of the bloc example infinite scroll posts"
+  },
+  "emailRequired": "Email is required",
+  "@emailRequired": {
+    "description": "Email is required"
+  },
+  "passwordRequired": "Password is required",
+  "@passwordRequired": {
+    "description": "Password is required"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Title of the login page"
   }
 }

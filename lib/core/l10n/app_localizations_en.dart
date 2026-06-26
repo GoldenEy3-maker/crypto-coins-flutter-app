@@ -50,4 +50,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get blocExampleInfiniteScrollPostsDescription =>
       'Description of the bloc example infinite scroll posts';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get login => 'Login';
 }

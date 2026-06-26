@@ -56,5 +56,25 @@
   "blocExampleInfiniteScrollPostsDescription": "Описание блока Bloc пример бесконечной прокрутки постов",
   "@blocExampleInfiniteScrollPostsDescription": {
     "description": "Описание блока Bloc пример бесконечной прокрутки постов"
+  },
+  "emailRequired": "Email обязателен",
+  "@emailRequired": {
+    "description": "Email обязателен"
+  },
+  "passwordRequired": "Пароль обязателен",
+  "@passwordRequired": {
+    "description": "Пароль обязателен"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email"
+  },
+  "password": "Пароль",
+  "@password": {
+    "description": "Пароль"
+  },
+  "login": "Авторизация",
+  "@login": {
+    "description": "Заголовок страницы авторизации"
   }
 }

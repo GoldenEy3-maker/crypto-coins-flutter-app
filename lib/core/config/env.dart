@@ -5,7 +5,7 @@ part "env.g.dart";
 @Envied(path: ".env")
 abstract class Env {
   @EnviedField(varName: "JSON_PLACEHOLDER_BASE_URL")
-  static String jsonPlaceholderBaseUrl = _Env.jsonPlaceholderBaseUrl;
+  static const String jsonPlaceholderBaseUrl = _Env.jsonPlaceholderBaseUrl;
 
   @EnviedField(varName: "CRYPTOCOMPARE_BASE_URL")
   static const String cryptoCompareBaseUrl = _Env.cryptoCompareBaseUrl;
@@ -17,8 +17,8 @@ abstract class Env {
   static const String mockAuthLoginPassword = _Env.mockAuthLoginPassword;
 
   @EnviedField(varName: "ACCESS_TOKEN_SECRET", obfuscate: true)
-  static const String accessTokenSecret = _Env.accessTokenSecret;
+  static String accessTokenSecret = _Env.accessTokenSecret;
 
   @EnviedField(varName: "REFRESH_TOKEN_SECRET", obfuscate: true)
-  static const String refreshTokenSecret = _Env.refreshTokenSecret;
+  static String refreshTokenSecret = _Env.refreshTokenSecret;
 }

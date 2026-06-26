@@ -50,4 +50,19 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get blocExampleInfiniteScrollPostsDescription =>
       'Описание блока Bloc пример бесконечной прокрутки постов';
+
+  @override
+  String get emailRequired => 'Email обязателен';
+
+  @override
+  String get passwordRequired => 'Пароль обязателен';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Пароль';
+
+  @override
+  String get login => 'Авторизация';
 }

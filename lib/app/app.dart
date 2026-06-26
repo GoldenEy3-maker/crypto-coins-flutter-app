@@ -5,6 +5,8 @@ import "package:flutter_application_1/core/theme/app_theme.dart";
 import "package:flutter_application_1/core/theme/theme_provider.dart";
 import "package:flutter_application_1/core/l10n/app_localizations.dart";
 import "package:flutter_application_1/core/l10n/locale_provider.dart";
+import "package:flutter_application_1/features/auth/presentation/blocs/blocs.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:talker_flutter/talker_flutter.dart";
 
 class CoinsApp extends StatefulWidget {
@@ -42,26 +44,45 @@ class _CoinsAppState extends State<CoinsApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: Listenable.merge([localeProvider, themeProvider]),
-      builder: (context, child) {
-        final theme = themeProvider.isDark
-            ? appTheme.darkTheme
-            : appTheme.lightTheme;
+    return BlocProvider(
+      lazy: false,
+      create: (context) => getIt.get<AuthBloc>()..add(AuthAppStarted()),
+      child: BlocListener<AuthBloc, AuthState>(
+        listenWhen: (_, current) =>
+            current is AuthStatusAuthenticated ||
+            current is AuthStatusUnauthenticated,
+        listener: (_, state) {
+          switch (state) {
+            case AuthStatusAuthenticated():
+              appRouter.replaceAll([const MainLayoutRoute()]);
+            case AuthStatusUnauthenticated():
+              appRouter.replaceAll([const LoginRoute()]);
+            default:
+              break;
+          }
+        },
+        child: ListenableBuilder(
+          listenable: Listenable.merge([localeProvider, themeProvider]),
+          builder: (context, child) {
+            final theme = themeProvider.isDark
+                ? appTheme.darkTheme
+                : appTheme.lightTheme;
 
-        return MaterialApp.router(
-          title: "Coins App",
-          locale: localeProvider.locale,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: theme,
-          routerConfig: appRouter.config(
-            navigatorObservers: () => [
-              TalkerRouteObserver(getIt.get<Talker>()),
-            ],
-          ),
-        );
-      },
+            return MaterialApp.router(
+              title: "Coins App",
+              locale: localeProvider.locale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: theme,
+              routerConfig: appRouter.config(
+                navigatorObservers: () => [
+                  TalkerRouteObserver(getIt.get<Talker>()),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
