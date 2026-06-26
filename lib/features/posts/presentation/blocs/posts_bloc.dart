@@ -7,6 +7,8 @@ import "../../domain/entities/entities.dart";
 import "../../domain/usecases/usecases.dart";
 import 'package:stream_transform/stream_transform.dart';
 
+import "../../params/params.dart";
+
 part "posts_event.dart";
 part "posts_state.dart";
 

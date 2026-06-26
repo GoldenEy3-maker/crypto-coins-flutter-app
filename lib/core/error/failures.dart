@@ -19,6 +19,16 @@ final class NetworkFailure extends Failure {
   const NetworkFailure([super.message = "Network failure"]);
 }
 
+final class UnauthorizedFailure extends Failure {
+  const UnauthorizedFailure([super.message = "Unauthorized failure"]);
+}
+
+final class InvalidCredentialsFailure extends Failure {
+  const InvalidCredentialsFailure([
+    super.message = "Invalid credentials failure",
+  ]);
+}
+
 final class UnknownFailure extends Failure {
   const UnknownFailure([super.message = "Unknown failure"]);
 }

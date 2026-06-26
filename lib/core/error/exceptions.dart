@@ -4,6 +4,12 @@ class ServerException implements Exception {
   final String message;
 }
 
+class JwtTokenException implements Exception {
+  const JwtTokenException([this.message = "Jwt token exception"]);
+
+  final String message;
+}
+
 class CacheException implements Exception {
   const CacheException([this.message = "Cache exception"]);
 

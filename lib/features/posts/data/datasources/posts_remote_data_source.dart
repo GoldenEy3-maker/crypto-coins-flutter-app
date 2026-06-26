@@ -5,7 +5,7 @@ import "package:flutter_application_1/core/network/api_client.dart";
 import "package:flutter_application_1/core/network/dio_failure_mapper.dart";
 import "package:flutter_application_1/core/utils/either.dart";
 
-import "../../domain/usecases/usecases.dart";
+import "../../params/params.dart";
 import "../models/models.dart";
 
 abstract class PostsRemoteDataSource {

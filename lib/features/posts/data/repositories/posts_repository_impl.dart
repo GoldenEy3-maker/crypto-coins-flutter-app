@@ -4,8 +4,8 @@ import "package:flutter_application_1/core/utils/either.dart";
 
 import "../../domain/entities/entities.dart";
 import "../../domain/repositories/repositories.dart";
+import "../../params/params.dart";
 import "../datasources/datasources.dart";
-import "../../domain/usecases/usecases.dart";
 
 class PostsRepositoryImpl implements PostsRepository {
   final PostsRemoteDataSource _remoteDataSource;

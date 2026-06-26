@@ -6,6 +6,7 @@ Failure mapExceptionToFailure(Object error) {
     ServerException(message: final message) => ServerFailure(message),
     CacheException(message: final message) => CacheFailure(message),
     NetworkException(message: final message) => NetworkFailure(message),
+    JwtTokenException(message: final message) => UnauthorizedFailure(message),
     UnknownException(message: final message) => UnknownFailure(message),
     _ => const UnknownFailure(),
   };
