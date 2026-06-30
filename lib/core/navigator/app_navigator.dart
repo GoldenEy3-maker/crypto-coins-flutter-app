@@ -11,5 +11,7 @@ abstract class AppNavigator {
 
   void openCoinDetail(String coinName);
 
+  void openLogin();
+
   void back();
 }

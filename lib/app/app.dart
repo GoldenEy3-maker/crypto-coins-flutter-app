@@ -17,10 +17,10 @@ class CoinsApp extends StatefulWidget {
 }
 
 class _CoinsAppState extends State<CoinsApp> with WidgetsBindingObserver {
-  final appRouter = getIt.get<AppRouter>();
-  final localeProvider = getIt.get<LocaleProvider>();
-  final themeProvider = getIt.get<ThemeProvider>();
-  final appTheme = getIt.get<AppTheme>();
+  final _appRouter = getIt.get<AppRouter>();
+  final _localeProvider = getIt.get<LocaleProvider>();
+  final _themeProvider = getIt.get<ThemeProvider>();
+  final _appTheme = getIt.get<AppTheme>();
 
   @override
   void initState() {
@@ -31,13 +31,14 @@ class _CoinsAppState extends State<CoinsApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
   }
 
   @override
   void didChangePlatformBrightness() {
     super.didChangePlatformBrightness();
-    themeProvider.setResolvedTheme(
+    _themeProvider.setResolvedTheme(
       WidgetsBinding.instance.platformDispatcher.platformBrightness,
     );
   }
@@ -54,27 +55,27 @@ class _CoinsAppState extends State<CoinsApp> with WidgetsBindingObserver {
         listener: (_, state) {
           switch (state) {
             case AuthStatusAuthenticated():
-              appRouter.replaceAll([const MainLayoutRoute()]);
+              _appRouter.replaceAll([const MainLayoutRoute()]);
             case AuthStatusUnauthenticated():
-              appRouter.replaceAll([const LoginRoute()]);
+              _appRouter.replaceAll([const LoginRoute()]);
             default:
               break;
           }
         },
         child: ListenableBuilder(
-          listenable: Listenable.merge([localeProvider, themeProvider]),
+          listenable: Listenable.merge([_localeProvider, _themeProvider]),
           builder: (context, child) {
-            final theme = themeProvider.isDark
-                ? appTheme.darkTheme
-                : appTheme.lightTheme;
+            final theme = _themeProvider.isDark
+                ? _appTheme.darkTheme
+                : _appTheme.lightTheme;
 
             return MaterialApp.router(
               title: "Coins App",
-              locale: localeProvider.locale,
+              locale: _localeProvider.locale,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               theme: theme,
-              routerConfig: appRouter.config(
+              routerConfig: _appRouter.config(
                 navigatorObservers: () => [
                   TalkerRouteObserver(getIt.get<Talker>()),
                 ],

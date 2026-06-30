@@ -14,7 +14,7 @@ class AppNavigatorImpl implements AppNavigator {
 
   @override
   void openSettings() {
-    _router.navigate(const SettingsRoute());
+    _router.navigate(SettingsRoute());
   }
 
   @override
@@ -35,6 +35,11 @@ class AppNavigatorImpl implements AppNavigator {
   @override
   void openPostsList() {
     _router.navigate(const PostsRoute());
+  }
+
+  @override
+  void openLogin() {
+    _router.navigate(const LoginRoute());
   }
 
   @override

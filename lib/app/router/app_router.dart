@@ -20,7 +20,7 @@ part "app_router.gr.dart";
 @AutoRouterConfig(replaceInRouteName: "Page,Route")
 class AppRouter extends RootStackRouter {
   @override
-  RouteType get defaultRouteType => const RouteType.material();
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
   @override
   List<AutoRoute> get routes => [

@@ -32,13 +32,20 @@ class JwtAccessTokenPayload {
 
 class JwtRefreshTokenPayload {
   final String email;
+  final int tokenVersion;
 
-  JwtRefreshTokenPayload({required this.email});
+  JwtRefreshTokenPayload({required this.email, required this.tokenVersion});
 
-  Map<String, dynamic> toJson() => {"email": email};
+  Map<String, dynamic> toJson() => {
+    "email": email,
+    "tokenVersion": tokenVersion,
+  };
 
   factory JwtRefreshTokenPayload.fromJson(Map<String, dynamic> json) {
-    return JwtRefreshTokenPayload(email: json["email"] as String);
+    return JwtRefreshTokenPayload(
+      email: json["email"] as String,
+      tokenVersion: json["tokenVersion"] as int,
+    );
   }
 }
 
@@ -51,7 +58,7 @@ class AuthJwtTokenGenerator {
     );
     return JwtToken(
       token: token,
-      expiresAt: DateTime.now().add(const Duration(minutes: 5)),
+      expiresAt: DateTime.now().add(const Duration(seconds: 15)),
     );
   }
 
@@ -102,7 +109,10 @@ class MockAuthRemoteDataSource implements AuthRemoteDataSource {
           JwtAccessTokenPayload(email: params.email),
         );
         final refreshToken = AuthJwtTokenGenerator.generateRefreshToken(
-          JwtRefreshTokenPayload(email: params.email),
+          JwtRefreshTokenPayload(
+            email: params.email,
+            tokenVersion: Env.mockAuthTokenVersion,
+          ),
         );
 
         return Right(
@@ -139,11 +149,18 @@ class MockAuthRemoteDataSource implements AuthRemoteDataSource {
       return refreshTokenResult.fold(
         (exception) => Left(mapExceptionToFailure(exception)),
         (jwtToken) {
+          if (jwtToken.tokenVersion != Env.mockAuthTokenVersion) {
+            return Left(const UnauthorizedFailure());
+          }
+
           final accessToken = AuthJwtTokenGenerator.generateAccessToken(
             JwtAccessTokenPayload(email: jwtToken.email),
           );
           final refreshToken = AuthJwtTokenGenerator.generateRefreshToken(
-            JwtRefreshTokenPayload(email: jwtToken.email),
+            JwtRefreshTokenPayload(
+              email: jwtToken.email,
+              tokenVersion: jwtToken.tokenVersion,
+            ),
           );
 
           return Right(

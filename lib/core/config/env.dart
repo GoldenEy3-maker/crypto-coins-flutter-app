@@ -21,4 +21,7 @@ abstract class Env {
 
   @EnviedField(varName: "REFRESH_TOKEN_SECRET", obfuscate: true)
   static String refreshTokenSecret = _Env.refreshTokenSecret;
+
+  @EnviedField(varName: "MOCK_AUTH_TOKEN_VERSION")
+  static int mockAuthTokenVersion = _Env.mockAuthTokenVersion;
 }

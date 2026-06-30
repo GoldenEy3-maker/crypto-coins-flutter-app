@@ -9,22 +9,30 @@ import "package:flutter_application_1/core/l10n/locale_provider.dart";
 import "package:talker_flutter/talker_flutter.dart";
 
 class SettingsView extends StatelessWidget {
-  final ThemeProvider themeProvider;
-  final LocaleProvider localeProvider;
-  final Talker talker;
+  final ThemeProvider _themeProvider;
+  final LocaleProvider _localeProvider;
+  final Talker _talker;
+  final String _userEmail;
+  final void Function() _onLogout;
 
   const SettingsView({
     super.key,
-    required this.themeProvider,
-    required this.localeProvider,
-    required this.talker,
-  });
+    required ThemeProvider themeProvider,
+    required LocaleProvider localeProvider,
+    required Talker talker,
+    required String userEmail,
+    required void Function() onLogout,
+  }) : _themeProvider = themeProvider,
+       _localeProvider = localeProvider,
+       _talker = talker,
+       _userEmail = userEmail,
+       _onLogout = onLogout;
 
   void _openThemePicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return ChangeThemeBottomSheet(themeProvider: themeProvider);
+        return ChangeThemeBottomSheet(themeProvider: _themeProvider);
       },
     );
   }
@@ -33,7 +41,7 @@ class SettingsView extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return ChangeLocaleBottomSheet(localeProvider: localeProvider);
+        return ChangeLocaleBottomSheet(localeProvider: _localeProvider);
       },
     );
   }
@@ -42,7 +50,6 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final appBrightnessThemeLabelResolver =
         AppBrightnessThemeLabelResolver.fromContext(context);
-
     return CustomScrollView(
       slivers: [
         SliverList.list(
@@ -52,14 +59,25 @@ class SettingsView extends StatelessWidget {
                 horizontal: 16,
               ).copyWith(bottom: 8),
               child: ListTile(
+                onTap: _onLogout,
+                title: Text(_userEmail),
+                subtitle: const Text("Выйти"),
+                trailing: const Icon(Icons.logout),
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ).copyWith(bottom: 8),
+              child: ListTile(
                 onTap: () => _openThemePicker(context),
                 title: const Text("Тема"),
                 trailing: ListenableBuilder(
-                  listenable: themeProvider,
+                  listenable: _themeProvider,
                   builder: (context, _) {
                     return Text(
                       appBrightnessThemeLabelResolver.resolve(
-                        themeProvider.theme,
+                        _themeProvider.theme,
                       ),
                       style: const TextStyle(fontSize: 16),
                     );
@@ -76,7 +94,7 @@ class SettingsView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      Language.fromLocale(localeProvider.locale).name,
+                      Language.fromLocale(_localeProvider.locale).name,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ],
@@ -93,7 +111,7 @@ class SettingsView extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => CustomTalkerScreen(talker: talker),
+                      builder: (context) => CustomTalkerScreen(talker: _talker),
                     ),
                   );
                 },
