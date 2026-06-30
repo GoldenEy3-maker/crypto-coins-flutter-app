@@ -32,10 +32,12 @@ class _LoginFormState extends State<LoginForm> {
       builder: (context, state) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state is AuthStatusFailure) {
+            final failure = state.failure;
+
+            if (failure != null) {
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(SnackBar(content: Text(state.failure.message)));
+              ).showSnackBar(SnackBar(content: Text(failure.message)));
             }
           },
           child: Form(
@@ -85,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
                         );
                       }
                     },
-                    child: state is AuthStatusLoading
+                    child: state.isLoading
                         ? const CircularProgressIndicator()
                         : Text(
                             i10n.login,

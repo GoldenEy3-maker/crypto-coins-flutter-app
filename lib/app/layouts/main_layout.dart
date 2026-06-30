@@ -13,7 +13,7 @@ class MainLayoutPage extends StatelessWidget {
     final i10n = AppLocalizations.of(context)!;
 
     return AutoTabsScaffold(
-      routes: [const HomeRoute(), const CoinsShellRoute(), SettingsRoute()],
+      routes: const [HomeRoute(), CoinsShellRoute(), SettingsRoute()],
       transitionBuilder: (context, child, animation) =>
           FadeTransition(opacity: animation, child: child),
       bottomNavigationBuilder: (context, tabsRouter) {

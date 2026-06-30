@@ -3,10 +3,9 @@ import "package:flutter/material.dart";
 import "package:flutter_application_1/core/di/get_it.dart";
 import "package:flutter_application_1/core/l10n/app_localizations.dart";
 import "package:flutter_application_1/features/posts/domain/usecases/usecases.dart";
+import "package:flutter_application_1/features/posts/presentation/blocs/blocs.dart";
 import "package:flutter_application_1/features/posts/presentation/views/views.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-
-import "../../features/posts/presentation/blocs/blocs.dart";
 
 @RoutePage()
 class PostsPage extends StatelessWidget {

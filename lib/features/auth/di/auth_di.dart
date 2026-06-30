@@ -1,6 +1,8 @@
+import "package:flutter/foundation.dart";
 import "package:flutter_application_1/core/di/get_it.dart";
 import "package:flutter_application_1/core/session/session_repository.dart";
 import "package:flutter_secure_storage/flutter_secure_storage.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 import "../data/datasources/datasources.dart";
 import "../data/repositories/repositories.dart";
@@ -13,11 +15,17 @@ void registerAuthModule() {
     () => MockAuthRemoteDataSource(),
   );
 
-  getIt.registerLazySingleton<AuthLocalDataSource>(
-    () => AuthLocalDataSourceImpl(
-      secureStorage: getIt.get<FlutterSecureStorage>(),
-    ),
-  );
+  getIt.registerLazySingleton<AuthLocalDataSource>(() {
+    if (kDebugMode) {
+      final sharedPreferences = getIt.get<SharedPreferences>();
+      return AuthLocalSharedPreferencesDataSource(
+        sharedPreferences: sharedPreferences,
+      );
+    } else {
+      final secureStorage = getIt.get<FlutterSecureStorage>();
+      return AuthLocalSecureStorageDataSource(secureStorage: secureStorage);
+    }
+  });
 
   getIt.registerLazySingleton<AuthSessionRepository>(
     () => AuthSessionRepository(),

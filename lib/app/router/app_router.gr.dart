@@ -171,46 +171,18 @@ class PostsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SettingsPage]
-class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
-  SettingsRoute({Key? key, List<PageRouteInfo>? children})
-    : super(
-        SettingsRoute.name,
-        args: SettingsRouteArgs(key: key),
-        initialChildren: children,
-      );
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute({List<PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'SettingsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SettingsRouteArgs>(
-        orElse: () => const SettingsRouteArgs(),
-      );
-      return SettingsPage(key: args.key);
+      return const SettingsPage();
     },
   );
-}
-
-class SettingsRouteArgs {
-  const SettingsRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SettingsRouteArgs{key: $key}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! SettingsRouteArgs) return false;
-    return key == other.key;
-  }
-
-  @override
-  int get hashCode => key.hashCode;
 }
 
 /// generated route for

@@ -50,13 +50,13 @@ class _CoinsAppState extends State<CoinsApp> with WidgetsBindingObserver {
       create: (context) => getIt.get<AuthBloc>()..add(AuthAppStarted()),
       child: BlocListener<AuthBloc, AuthState>(
         listenWhen: (_, current) =>
-            current is AuthStatusAuthenticated ||
-            current is AuthStatusUnauthenticated,
+            current.status == AuthStatus.authenticated ||
+            current.status == AuthStatus.unauthenticated,
         listener: (_, state) {
-          switch (state) {
-            case AuthStatusAuthenticated():
+          switch (state.status) {
+            case AuthStatus.authenticated:
               _appRouter.replaceAll([const MainLayoutRoute()]);
-            case AuthStatusUnauthenticated():
+            case AuthStatus.unauthenticated:
               _appRouter.replaceAll([const LoginRoute()]);
             default:
               break;

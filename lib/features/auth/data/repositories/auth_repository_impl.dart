@@ -106,6 +106,7 @@ class AuthRepositoryImpl implements AuthRepository {
     final localSessionResult = await _localDataSource.readSession();
     return localSessionResult.fold(
       (failure) {
+        _localDataSource.clearSession();
         _sessionRepository.updateSession(AuthSessionUnauthenticated());
         return Right(AuthSessionUnauthenticated());
       },

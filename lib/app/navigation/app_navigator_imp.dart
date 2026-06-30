@@ -14,7 +14,7 @@ class AppNavigatorImpl implements AppNavigator {
 
   @override
   void openSettings() {
-    _router.navigate(SettingsRoute());
+    _router.navigate(const SettingsRoute());
   }
 
   @override

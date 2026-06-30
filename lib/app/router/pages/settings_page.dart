@@ -2,7 +2,6 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_application_1/core/di/get_it.dart";
 import "package:flutter_application_1/core/l10n/app_localizations.dart";
-import "package:flutter_application_1/core/navigator/app_navigator.dart";
 import "package:flutter_application_1/features/auth/presentation/blocs/blocs.dart";
 import "package:flutter_application_1/features/settings/presentation/views/settings_view.dart";
 import "package:flutter_application_1/core/l10n/locale_provider.dart";
@@ -12,9 +11,7 @@ import "package:talker_flutter/talker_flutter.dart";
 
 @RoutePage()
 class SettingsPage extends StatelessWidget {
-  final AppNavigator _appNavigator = getIt.get<AppNavigator>();
-
-  SettingsPage({super.key});
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +19,7 @@ class SettingsPage extends StatelessWidget {
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        final String userEmail = state is AuthStatusAuthenticated
-            ? state.user.email
-            : "";
+        final String userEmail = state.user?.email ?? "";
 
         return Scaffold(
           appBar: AppBar(title: Text(i10n.bottomNavigationBarSettings)),
@@ -35,7 +30,6 @@ class SettingsPage extends StatelessWidget {
             userEmail: userEmail,
             onLogout: () {
               context.read<AuthBloc>().add(AuthLogoutRequested());
-              _appNavigator.openLogin();
             },
           ),
         );

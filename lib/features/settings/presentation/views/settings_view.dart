@@ -63,6 +63,7 @@ class SettingsView extends StatelessWidget {
                 title: Text(_userEmail),
                 subtitle: const Text("Выйти"),
                 trailing: const Icon(Icons.logout),
+                enabled: _userEmail.isNotEmpty,
               ),
             ),
             Card(

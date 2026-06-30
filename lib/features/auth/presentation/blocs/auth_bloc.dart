@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }) : _restoreSession = restoreSession,
        _login = login,
        _logout = logout,
-       super(AuthStatusUnknown()) {
+       super(const AuthState(status: AuthStatus.unknown)) {
     on<AuthAppStarted>(_onAppStared);
     on<AuthLoginSubmitted>(_onLoginSubmitted);
     on<AuthLogoutRequested>(_onLogoutRequested);
@@ -32,35 +32,56 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthAppStarted event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthStatusLoading());
+    emit(state.copyWith(isLoading: true));
 
     final restoreSessionResult = await _restoreSession(const NoParams());
 
-    restoreSessionResult.fold((failure) => emit(AuthStatusUnauthenticated()), (
-      session,
-    ) {
-      switch (session) {
-        case AuthSessionAuthenticated():
-          emit(AuthStatusAuthenticated(user: session.user));
-        case AuthSessionUnauthenticated():
-          emit(AuthStatusUnauthenticated());
-        case AuthSessionUnknown():
-          emit(AuthStatusUnknown());
-      }
-    });
+    restoreSessionResult.fold(
+      (failure) => emit(
+        state.copyWith(status: AuthStatus.unauthenticated, isLoading: false),
+      ),
+      (session) {
+        switch (session) {
+          case AuthSessionAuthenticated():
+            emit(
+              state.copyWith(
+                status: AuthStatus.authenticated,
+                user: session.user,
+                isLoading: false,
+              ),
+            );
+          case AuthSessionUnauthenticated():
+            emit(
+              state.copyWith(
+                status: AuthStatus.unauthenticated,
+                isLoading: false,
+              ),
+            );
+          case AuthSessionUnknown():
+            emit(state.copyWith(status: AuthStatus.unknown, isLoading: false));
+        }
+      },
+    );
   }
 
   Future<void> _onLoginSubmitted(
     AuthLoginSubmitted event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthStatusLoading());
+    emit(state.copyWith(isLoading: true, failure: null));
 
     final loginResult = await _login(event.params);
 
     loginResult.fold(
-      (failure) => emit(AuthStatusFailure(failure: failure)),
-      (session) => emit(AuthStatusAuthenticated(user: session.user)),
+      (failure) => emit(state.copyWith(failure: failure, isLoading: false)),
+      (session) => emit(
+        state.copyWith(
+          status: AuthStatus.authenticated,
+          user: session.user,
+          isLoading: false,
+          failure: null,
+        ),
+      ),
     );
   }
 
@@ -68,13 +89,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLogoutRequested event,
     Emitter<AuthState> emit,
   ) async {
-    emit(AuthStatusLoading());
+    emit(state.copyWith(isLoading: true));
 
-    final logoutResult = await _logout(const NoParams());
+    await _logout(const NoParams());
 
-    logoutResult.fold(
-      (failure) => emit(AuthStatusUnauthenticated()),
-      (session) => emit(AuthStatusUnauthenticated()),
+    emit(
+      state.copyWith(
+        status: AuthStatus.unauthenticated,
+        isLoading: false,
+        user: null,
+      ),
     );
   }
 }

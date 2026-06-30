@@ -1,32 +1,36 @@
 part of "auth_bloc.dart";
 
-sealed class AuthState extends Equatable {
-  const AuthState();
+enum AuthStatus { unknown, authenticated, unauthenticated }
+
+const _absent = Object();
+
+class AuthState extends Equatable {
+  final AuthStatus status;
+  final AuthUser? user;
+  final Failure? failure;
+  final bool isLoading;
+
+  const AuthState({
+    this.status = AuthStatus.unknown,
+    this.user,
+    this.failure,
+    this.isLoading = false,
+  });
+
+  AuthState copyWith({
+    AuthStatus? status,
+    Object? user = _absent,
+    Object? failure = _absent,
+    bool? isLoading,
+  }) {
+    return AuthState(
+      status: status ?? this.status,
+      user: user == _absent ? this.user : user as AuthUser?,
+      failure: failure == _absent ? this.failure : failure as Failure?,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 
   @override
-  List<Object> get props => [];
-}
-
-final class AuthStatusUnknown extends AuthState {}
-
-final class AuthStatusAuthenticated extends AuthState {
-  final AuthUser user;
-
-  const AuthStatusAuthenticated({required this.user});
-
-  @override
-  List<Object> get props => [...super.props, user];
-}
-
-final class AuthStatusUnauthenticated extends AuthState {}
-
-final class AuthStatusLoading extends AuthState {}
-
-final class AuthStatusFailure extends AuthState {
-  final Failure failure;
-
-  const AuthStatusFailure({required this.failure});
-
-  @override
-  List<Object> get props => [...super.props, failure];
+  List<Object?> get props => [status, user, failure, isLoading];
 }
