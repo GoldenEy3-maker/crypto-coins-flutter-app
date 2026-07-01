@@ -65,4 +65,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get testSandboxRefreshTokensTitle => 'Test sandbox refresh tokens';
+
+  @override
+  String get testSandboxRefreshTokensExample =>
+      'Test sandbox refresh tokens example';
 }

@@ -14,6 +14,7 @@ import "package:flutter_application_1/app/router/pages/posts_page.dart";
 import "package:flutter_application_1/app/layouts/main_layout.dart";
 import "package:flutter_application_1/app/router/pages/login_page.dart";
 import "package:flutter_application_1/app/router/pages/splash_page.dart";
+import "package:flutter_application_1/app/router/pages/test_sandbox_refresh_tokens_page.dart";
 
 part "app_router.gr.dart";
 
@@ -37,6 +38,7 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: HomeRoute.page, initial: true),
             AutoRoute(page: TimerRoute.page),
             AutoRoute(page: PostsRoute.page),
+            AutoRoute(page: TestSandboxRefreshTokensRoute.page),
           ],
         ),
         AutoRoute(

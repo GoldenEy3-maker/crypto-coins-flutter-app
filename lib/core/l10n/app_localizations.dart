@@ -205,6 +205,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// Title of the test sandbox refresh tokens page
+  ///
+  /// In en, this message translates to:
+  /// **'Test sandbox refresh tokens'**
+  String get testSandboxRefreshTokensTitle;
+
+  /// Title of the test sandbox refresh tokens example
+  ///
+  /// In en, this message translates to:
+  /// **'Test sandbox refresh tokens example'**
+  String get testSandboxRefreshTokensExample;
 }
 
 class _AppLocalizationsDelegate

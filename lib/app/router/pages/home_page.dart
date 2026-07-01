@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     final i10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(title: Text(i10n.bottomNavigationBarHome)),
-      body: HomeView(navigator: getIt.get<AppNavigator>()),
+      body: HomeView(appNavigator: getIt.get<AppNavigator>()),
     );
   }
 }

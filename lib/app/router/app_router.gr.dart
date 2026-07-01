@@ -202,6 +202,22 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TestSandboxRefreshTokensPage]
+class TestSandboxRefreshTokensRoute extends PageRouteInfo<void> {
+  const TestSandboxRefreshTokensRoute({List<PageRouteInfo>? children})
+    : super(TestSandboxRefreshTokensRoute.name, initialChildren: children);
+
+  static const String name = 'TestSandboxRefreshTokensRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TestSandboxRefreshTokensPage();
+    },
+  );
+}
+
+/// generated route for
 /// [TimerPage]
 class TimerRoute extends PageRouteInfo<void> {
   const TimerRoute({List<PageRouteInfo>? children})

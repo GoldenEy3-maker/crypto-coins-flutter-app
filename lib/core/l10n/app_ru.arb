@@ -76,5 +76,13 @@
   "login": "Авторизация",
   "@login": {
     "description": "Заголовок страницы авторизации"
+  },
+  "testSandboxRefreshTokensTitle": "Тест sandbox refresh tokens",
+  "@testSandboxRefreshTokensTitle": {
+    "description": "Заголовок страницы теста sandbox refresh tokens"
+  },
+  "testSandboxRefreshTokensExample": "Пример sandbox refresh tokens",
+  "@testSandboxRefreshTokensExample": {
+    "description": "Заголовок примера sandbox refresh tokens"
   }
 }

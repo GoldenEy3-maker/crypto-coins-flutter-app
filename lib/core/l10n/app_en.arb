@@ -78,5 +78,13 @@
   "login": "Login",
   "@login": {
     "description": "Title of the login page"
+  },
+  "testSandboxRefreshTokensTitle": "Test sandbox refresh tokens",
+  "@testSandboxRefreshTokensTitle": {
+    "description": "Title of the test sandbox refresh tokens page"
+  },
+  "testSandboxRefreshTokensExample": "Test sandbox refresh tokens example",
+  "@testSandboxRefreshTokensExample": {
+    "description": "Title of the test sandbox refresh tokens example"
   }
 }

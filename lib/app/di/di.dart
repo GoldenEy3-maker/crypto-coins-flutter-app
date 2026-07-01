@@ -9,7 +9,7 @@ Future<void> setupDI() async {
   await registerExternalScope();
   registerCoreScope();
   registerAppScope();
+  registerAuthModule();
   registerCryptoModule();
   registerPostsModule();
-  registerAuthModule();
 }

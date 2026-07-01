@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:bloc/bloc.dart";
 import "package:equatable/equatable.dart";
 import "package:flutter/foundation.dart";
@@ -15,18 +17,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RestoreSession _restoreSession;
   final Login _login;
   final Logout _logout;
+  final SessionRepository _sessionRepository;
+  StreamSubscription<AuthSession>? _sessionSubscription;
 
   AuthBloc({
+    required SessionRepository sessionRepository,
     required RestoreSession restoreSession,
     required Login login,
     required Logout logout,
-  }) : _restoreSession = restoreSession,
+  }) : _sessionRepository = sessionRepository,
+       _restoreSession = restoreSession,
        _login = login,
        _logout = logout,
        super(const AuthState(status: AuthStatus.unknown)) {
     on<AuthAppStarted>(_onAppStared);
     on<AuthLoginSubmitted>(_onLoginSubmitted);
     on<AuthLogoutRequested>(_onLogoutRequested);
+    on<AuthSessionChanged>(_onSessionChanged);
+
+    _sessionSubscription = _sessionRepository.sessionChanges.listen(
+      (session) => add(AuthSessionChanged(session)),
+    );
   }
 
   Future<void> _onAppStared(
@@ -102,5 +113,37 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         user: () => null,
       ),
     );
+  }
+
+  Future<void> _onSessionChanged(
+    AuthSessionChanged event,
+    Emitter<AuthState> emit,
+  ) async {
+    switch (event.session) {
+      case AuthSessionUnknown():
+        emit(state.copyWith(status: AuthStatus.unknown, isLoading: false));
+      case AuthSessionAuthenticated(:final user):
+        emit(
+          state.copyWith(
+            status: AuthStatus.authenticated,
+            user: () => user,
+            isLoading: false,
+          ),
+        );
+      case AuthSessionUnauthenticated():
+        emit(
+          state.copyWith(
+            status: AuthStatus.unauthenticated,
+            user: () => null,
+            isLoading: false,
+          ),
+        );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _sessionSubscription?.cancel();
+    return super.close();
   }
 }

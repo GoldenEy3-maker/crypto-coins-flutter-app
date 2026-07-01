@@ -13,5 +13,7 @@ abstract class AppNavigator {
 
   void openLogin();
 
+  void openTestSandboxRefreshTokens();
+
   void back();
 }

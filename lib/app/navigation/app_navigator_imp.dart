@@ -43,6 +43,11 @@ class AppNavigatorImpl implements AppNavigator {
   }
 
   @override
+  void openTestSandboxRefreshTokens() {
+    _router.navigate(const TestSandboxRefreshTokensRoute());
+  }
+
+  @override
   void back() {
     _router.maybePop();
   }

@@ -19,3 +19,12 @@ class AuthLoginSubmitted extends AuthEvent {
 }
 
 class AuthLogoutRequested extends AuthEvent {}
+
+class AuthSessionChanged extends AuthEvent {
+  final AuthSession session;
+
+  const AuthSessionChanged(this.session);
+
+  @override
+  List<Object> get props => [...super.props, session];
+}

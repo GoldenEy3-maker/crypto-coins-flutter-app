@@ -17,24 +17,25 @@ class BlocExampleItem {
 }
 
 class HomeView extends StatelessWidget {
-  final AppNavigator navigator;
+  final AppNavigator _appNavigator;
 
-  const HomeView({super.key, required this.navigator});
+  const HomeView({super.key, required AppNavigator appNavigator})
+    : _appNavigator = appNavigator;
 
   @override
   Widget build(BuildContext context) {
     final i10n = AppLocalizations.of(context)!;
-    final items = <BlocExampleItem>[
+    final blocExampleItems = <BlocExampleItem>[
       BlocExampleItem(
         title: i10n.blocExampleTimerTitle,
         description: i10n.blocExampleTimerDescription,
-        onTap: () => navigator.openBlockTimerExample(),
+        onTap: () => _appNavigator.openBlockTimerExample(),
         icon: Icons.timer,
       ),
       BlocExampleItem(
         title: i10n.blocExampleInfiniteScrollPostsTitle,
         description: i10n.blocExampleInfiniteScrollPostsDescription,
-        onTap: () => navigator.openPostsList(),
+        onTap: () => _appNavigator.openPostsList(),
         icon: Icons.list,
       ),
     ];
@@ -51,17 +52,34 @@ class HomeView extends StatelessWidget {
           ),
         ),
         SliverList.builder(
-          itemCount: items.length,
+          itemCount: blocExampleItems.length,
           itemBuilder: (context, index) {
-            final item = items[index];
+            final blocExampleItem = blocExampleItems[index];
             return ListTile(
-              title: Text(item.title),
-              subtitle: Text(item.description),
+              title: Text(blocExampleItem.title),
+              subtitle: Text(blocExampleItem.description),
               trailing: const Icon(Icons.arrow_forward_ios),
-              leading: Icon(item.icon),
-              onTap: item.onTap,
+              leading: Icon(blocExampleItem.icon),
+              onTap: blocExampleItem.onTap,
             );
           },
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const .only(top: 16, left: 16, bottom: 4, right: 16),
+            child: Text(
+              i10n.testSandboxRefreshTokensExample,
+              style: const TextStyle(fontSize: 18, fontWeight: .w500),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: ListTile(
+            title: Text(i10n.testSandboxRefreshTokensExample),
+            leading: const Icon(Icons.refresh),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () => _appNavigator.openTestSandboxRefreshTokens(),
+          ),
         ),
       ],
     );

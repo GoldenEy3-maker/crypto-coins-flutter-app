@@ -65,4 +65,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get login => 'Авторизация';
+
+  @override
+  String get testSandboxRefreshTokensTitle => 'Тест sandbox refresh tokens';
+
+  @override
+  String get testSandboxRefreshTokensExample => 'Пример sandbox refresh tokens';
 }
