@@ -1,5 +1,6 @@
 import "package:flutter/foundation.dart";
 import "package:flutter_application_1/core/di/get_it.dart";
+import "package:flutter_application_1/core/network/token_refresher.dart";
 import "package:flutter_application_1/core/session/session_repository.dart";
 import "package:flutter_secure_storage/flutter_secure_storage.dart";
 import "package:shared_preferences/shared_preferences.dart";
@@ -40,6 +41,10 @@ void registerAuthModule() {
       localDataSource: getIt.get<AuthLocalDataSource>(),
       sessionRepository: getIt.get<AuthSessionRepository>(),
     ),
+  );
+
+  getIt.registerLazySingleton<TokenRefresher>(
+    () => getIt.get<AuthRepository>(),
   );
 
   getIt.registerLazySingleton<Login>(

@@ -33,6 +33,8 @@ class _LoginFormState extends State<LoginForm> {
       listener: (context, state) {
         final failure = state.failure;
 
+        ScaffoldMessenger.of(context).clearSnackBars();
+
         if (failure != null) {
           ScaffoldMessenger.of(
             context,
