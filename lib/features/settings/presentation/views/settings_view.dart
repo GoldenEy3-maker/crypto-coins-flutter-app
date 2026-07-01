@@ -13,6 +13,7 @@ class SettingsView extends StatelessWidget {
   final LocaleProvider _localeProvider;
   final Talker _talker;
   final String _userEmail;
+  final bool _isAuthLoading;
   final void Function() _onLogout;
 
   const SettingsView({
@@ -22,11 +23,13 @@ class SettingsView extends StatelessWidget {
     required Talker talker,
     required String userEmail,
     required void Function() onLogout,
+    required bool isAuthLoading,
   }) : _themeProvider = themeProvider,
        _localeProvider = localeProvider,
        _talker = talker,
        _userEmail = userEmail,
-       _onLogout = onLogout;
+       _onLogout = onLogout,
+       _isAuthLoading = isAuthLoading;
 
   void _openThemePicker(BuildContext context) {
     showModalBottomSheet(
@@ -62,7 +65,9 @@ class SettingsView extends StatelessWidget {
                 onTap: _onLogout,
                 title: Text(_userEmail),
                 subtitle: const Text("Выйти"),
-                trailing: const Icon(Icons.logout),
+                trailing: _isAuthLoading
+                    ? const CircularProgressIndicator()
+                    : const Icon(Icons.logout),
                 enabled: _userEmail.isNotEmpty,
               ),
             ),

@@ -1,5 +1,6 @@
 import "package:bloc/bloc.dart";
 import "package:equatable/equatable.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter_application_1/core/error/failures.dart";
 import "package:flutter_application_1/core/session/session.dart";
 import "package:flutter_application_1/core/usecase/usecase.dart";
@@ -46,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(
               state.copyWith(
                 status: AuthStatus.authenticated,
-                user: session.user,
+                user: () => session.user,
                 isLoading: false,
               ),
             );
@@ -68,18 +69,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthLoginSubmitted event,
     Emitter<AuthState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, failure: null));
+    emit(state.copyWith(isLoading: true, failure: () => null));
 
     final loginResult = await _login(event.params);
 
     loginResult.fold(
-      (failure) => emit(state.copyWith(failure: failure, isLoading: false)),
+      (failure) =>
+          emit(state.copyWith(failure: () => failure, isLoading: false)),
       (session) => emit(
         state.copyWith(
           status: AuthStatus.authenticated,
-          user: session.user,
+          user: () => session.user,
           isLoading: false,
-          failure: null,
+          failure: () => null,
         ),
       ),
     );
@@ -97,7 +99,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       state.copyWith(
         status: AuthStatus.unauthenticated,
         isLoading: false,
-        user: null,
+        user: () => null,
       ),
     );
   }

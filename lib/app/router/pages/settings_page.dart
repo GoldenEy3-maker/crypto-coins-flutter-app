@@ -28,6 +28,7 @@ class SettingsPage extends StatelessWidget {
             localeProvider: getIt.get<LocaleProvider>(),
             talker: getIt.get<Talker>(),
             userEmail: userEmail,
+            isAuthLoading: state.isLoading,
             onLogout: () {
               context.read<AuthBloc>().add(AuthLogoutRequested());
             },

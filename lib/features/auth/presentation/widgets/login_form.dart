@@ -28,81 +28,90 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final i10n = AppLocalizations.of(context)!;
 
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
+      listenWhen: (previous, current) => previous.failure != current.failure,
+      listener: (context, state) {
+        final failure = state.failure;
+
+        if (failure != null) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(failure.message)));
+        }
+      },
       builder: (context, state) {
-        return BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            final failure = state.failure;
+        return Form(
+          key: _formKey,
+          child: Padding(
+            padding: const .symmetric(horizontal: 24),
+            child: Column(
+              mainAxisAlignment: .center,
+              crossAxisAlignment: .center,
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  autovalidateMode: .onUserInteraction,
+                  decoration: InputDecoration(labelText: i10n.email),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return i10n.emailRequired;
+                    }
 
-            if (failure != null) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(failure.message)));
-            }
-          },
-          child: Form(
-            key: _formKey,
-            autovalidateMode: .onUserInteraction,
-            child: Padding(
-              padding: const .symmetric(horizontal: 24),
-              child: Column(
-                mainAxisAlignment: .center,
-                crossAxisAlignment: .center,
-                children: [
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(labelText: i10n.email),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return i10n.emailRequired;
-                      }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 12),
+                TextFormField(
+                  controller: _passwordController,
+                  autovalidateMode: .onUserInteraction,
+                  obscureText: true,
+                  decoration: InputDecoration(labelText: i10n.password),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return i10n.passwordRequired;
+                    }
 
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: i10n.password),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return i10n.passwordRequired;
-                      }
-
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 24),
-                  FilledButton(
-                    onPressed: () {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        context.read<AuthBloc>().add(
-                          AuthLoginSubmitted(
-                            params: LoginParams(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            ),
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 24),
+                FilledButton(
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() ?? false) {
+                      context.read<AuthBloc>().add(
+                        AuthLoginSubmitted(
+                          params: LoginParams(
+                            email: _emailController.text,
+                            password: _passwordController.text,
                           ),
-                        );
-                      }
-                    },
-                    child: state.isLoading
-                        ? const CircularProgressIndicator()
-                        : Text(
-                            i10n.login,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: .w600,
-                            ),
+                        ),
+                      );
+                    }
+                  },
+                  child: state.isLoading
+                      ? const CircularProgressIndicator()
+                      : Text(
+                          i10n.login,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: .w600,
                           ),
-                  ),
-                ],
-              ),
+                        ),
+                ),
+              ],
             ),
           ),
         );
       },
     );
+  }
+}
+
+class LoginFormSubmitButton extends StatelessWidget {
+  const LoginFormSubmitButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(child: null);
   }
 }

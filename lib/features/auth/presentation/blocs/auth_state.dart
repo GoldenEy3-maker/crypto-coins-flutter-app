@@ -2,8 +2,6 @@ part of "auth_bloc.dart";
 
 enum AuthStatus { unknown, authenticated, unauthenticated }
 
-const _absent = Object();
-
 class AuthState extends Equatable {
   final AuthStatus status;
   final AuthUser? user;
@@ -19,14 +17,14 @@ class AuthState extends Equatable {
 
   AuthState copyWith({
     AuthStatus? status,
-    Object? user = _absent,
-    Object? failure = _absent,
+    ValueGetter<AuthUser?>? user,
+    ValueGetter<Failure?>? failure,
     bool? isLoading,
   }) {
     return AuthState(
       status: status ?? this.status,
-      user: user == _absent ? this.user : user as AuthUser?,
-      failure: failure == _absent ? this.failure : failure as Failure?,
+      user: user != null ? user() : this.user,
+      failure: failure != null ? failure() : this.failure,
       isLoading: isLoading ?? this.isLoading,
     );
   }

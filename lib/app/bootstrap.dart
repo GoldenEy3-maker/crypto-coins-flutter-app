@@ -13,9 +13,8 @@ import "di/di.dart";
 import "notification_service.dart";
 
 Future<void> bootstrap() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
     await setupDI();
 
     Bloc.observer = TalkerBlocObserver(talker: getIt.get<Talker>());
